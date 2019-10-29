@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 export default function App() {
   const [techs, setTechs] = useState([
@@ -10,10 +10,15 @@ export default function App() {
 
   const [newTech, setNewTech] = useState('');
 
-  function handleAdd() {
+  // function handleAdd() {
+  //   setTechs([...techs, newTech]);
+  //   setNewTech('');
+  // }
+
+  const handleAdd = useCallback(() => {
     setTechs([...techs, newTech]);
     setNewTech('');
-  }
+  }, [newTech, techs]);
 
   function componentWillUnmount() {}
 
